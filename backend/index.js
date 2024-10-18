@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
+
 require('dotenv').config();
 
 // Create an Express application
@@ -13,7 +15,9 @@ app.use(express.json());
 // User model schema
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
+  firstname: { type: String },
+  lastname: { type: String },
 });
 
 const User = mongoose.model('User', userSchema);
