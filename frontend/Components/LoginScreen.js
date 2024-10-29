@@ -11,8 +11,6 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
   const [isLogin, setIsLogin] = useState(true); 
   const [message, setMessage] = useState('');
 
-
-
   const handlePress = async () => {
     if (isLogin) {
       if (email === '' || password === '') {
@@ -27,8 +25,8 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
     }
   
     const url = isLogin
-      ? 'http://10.104.2.179:5000/login'
-      : 'http://10.104.2.179:5000/register';
+      ? 'http://10.104.11.224:5000/login'
+      : 'http://10.104.11.224:5000/register';
   
     const body = isLogin
       ? { username: email, password }
