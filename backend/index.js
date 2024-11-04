@@ -12,6 +12,8 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 
+app.use(cors());
+
 // User model schema
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
