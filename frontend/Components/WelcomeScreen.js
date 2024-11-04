@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Image, Text, Pressable, StyleSheet, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import styles from './styles/styles';
+
 export default function WelcomeScreen({ navigation, setIsLoggedIn }) {
 
   const [firstName, setFirstName] = useState('');
@@ -64,42 +66,3 @@ export default function WelcomeScreen({ navigation, setIsLoggedIn }) {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-
-    profilePicture: {
-      width: 200,
-      height: 200,
-      alignSelf: 'center',
-      borderWidth: 5,
-      borderRadius: 950,
-    },
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        padding: 16,
-        backgroundColor: '#eeeeee',
-      },
-      headerText: {
-        fontSize: 24,
-        marginBottom: 20,
-        textAlign: "center",
-        fontWeight: "bold",
-        color: "black",
-      },
-      buttonContainer: {
-        marginVertical: 10,
-        alignSelf: 'center',
-        width: '50%',
-      },
-      button: {
-        borderColor: 'black',
-        padding: 5,
-        flex: 'center',
-        borderWidth: 1,
-        textAlign: "center",
-        margin: 5,
-
-    },
-
-});

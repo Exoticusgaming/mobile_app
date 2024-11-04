@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, TextInput, Pressable, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import styles from './styles/styles';
+
 export default function LoginScreen({ navigation, setIsLoggedIn }) {
 
   const [firstName, setFirstName] = useState('');
@@ -133,47 +135,3 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
   );
 }
 
-const styles = StyleSheet.create({
-
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 16,
-    backgroundColor: '#eeeeee',
-  },
-  headerText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    width:'55%',
-    borderColor: 'black',
-    backgroundColor: '#D3D3D3',
-    borderWidth: 1,
-    margin: 'auto',
-    marginBottom: 12,
-    paddingLeft: 8,
-  },
-  buttonContainer: {
-    marginVertical: 10,
-    alignSelf: 'center',
-    width: '50%',
-  },
-  button: {
-    borderColor: 'black',
-    padding: 5,
-    flex: 'center',
-    borderWidth: 1,
-    textAlign: "center",
-    margin: 5,
-  },
-  message: {
-    marginTop: 20,
-    color: 'red',
-    textAlign: 'center',
-  },
-
-});
