@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, TextInput, Button, View } from 'react-native';
-
+import { Text, SafeAreaView, StyleSheet, TextInput, Pressable, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen({ navigation, setIsLoggedIn }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true); 
   const [message, setMessage] = useState('');
 
   const handlePress = async () => {
+
     if (isLogin) {
       if (email === '' || password === '') {
         setMessage('Please fill out all fields.');
@@ -25,8 +26,8 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
     }
   
     const url = isLogin
-      ? 'http://10.104.11.224:5000/login'
-      : 'http://10.104.11.224:5000/register';
+      ? 'http://10.104.4.132:5000/login'
+      : 'http://10.104.4.132:5000/register';
   
     const body = isLogin
       ? { username: email, password }
@@ -38,10 +39,18 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
+
           'Content-Type': 'application/json',
+
         },
+
         body: JSON.stringify(body),
+        
       });
+
+      await AsyncStorage.setItem("firstName", firstName);
+      await AsyncStorage.setItem("lastName", lastName);
+      await AsyncStorage.setItem("email", email);
   
       const result = await response.json();
       if (response.ok) {
@@ -64,13 +73,18 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
         setMessage(result.message || 'Something went wrong.');
       }
     } catch (error) {
+
       console.error('Error:', error);
       setMessage('Error connecting to the server.');
+
     }
+
   };
   
   return (
+
     <SafeAreaView style={styles.container}>
+
       <View>
         <Text style={styles.headerText}>{isLogin ? "Login" : "Sign Up"}</Text>
         
@@ -78,13 +92,13 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
           <>
             <TextInput
               style={styles.input}
-              placeholder="Enter first name"
+              placeholder="First name"
               value={firstName}
               onChangeText={text => setFirstName(text)}
             />
             <TextInput
               style={styles.input}
-              placeholder="Enter last name"
+              placeholder="Last name"
               value={lastName}
               onChangeText={text => setLastName(text)}
             />
@@ -93,46 +107,39 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
         
         <TextInput
           style={styles.input}
-          placeholder="Enter email"
+          placeholder="Email"
           value={email}
           onChangeText={text => setEmail(text)}
           keyboardType="email-address"
         />
         <TextInput
           style={styles.input}
-          placeholder="Enter password"
+          placeholder="Password"
           value={password}
           onChangeText={text => setPassword(text)}
           secureTextEntry={true}
         />
 
         <View style={styles.buttonContainer}>
-          <View style={styles.button}>
-            <Button color= "#000000"
-              title={isLogin ? "Login" : "Sign Up"}
-              onPress={handlePress}
-            />
-          </View>
-          <View style={styles.button}>
-            <Button color= "#000000"
-              title={isLogin ? "Switch to Sign Up" : "Switch to Login"}
-              onPress={() => setIsLogin(!isLogin)}
-            />
-          </View>
+            <Pressable style={styles.button} onPress={handlePress}>{isLogin ? "Login" : "Sign Up"}</Pressable>
+            <Pressable style={styles.button} onPress={() => setIsLogin(!isLogin)}>{isLogin ? "Switch to Sign Up" : "Switch to Login"}</Pressable>
         </View>
 
         {message ? <Text style={styles.message}>{message}</Text> : null}
+
       </View>
+
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#eeeeee',
   },
   headerText: {
     fontSize: 32,
@@ -151,15 +158,22 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
   },
   buttonContainer: {
-    marginTop: 20,
-    alignItems: 'center',
+    marginVertical: 10,
+    alignSelf: 'center',
+    width: '50%',
   },
   button: {
-    marginBottom: 15,
+    borderColor: 'black',
+    padding: 5,
+    flex: 'center',
+    borderWidth: 1,
+    textAlign: "center",
+    margin: 5,
   },
   message: {
     marginTop: 20,
     color: 'red',
     textAlign: 'center',
   },
+
 });
