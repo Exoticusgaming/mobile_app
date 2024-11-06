@@ -132,6 +132,7 @@ export default function LoginScreen({ navigation, setIsLoggedIn }) {
       </View>
 
     </SafeAreaView>
+    
   );
 }
 

@@ -64,5 +64,6 @@ export default function WelcomeScreen({ navigation, setIsLoggedIn }) {
       </View>
 
     </SafeAreaView>
+    
   );
 }

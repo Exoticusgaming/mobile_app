@@ -46,12 +46,15 @@ export default function ProfileScreen({navigation}) {
 
     const handlePress = async () => {
 
+        const changesMade = "Changes saved.";
+        const noChangesMade = "No changes were made."
+
         if (updatedFirstName != '')
         {
 
             setFirstName(updatedFirstName);
             await AsyncStorage.setItem('firstName', updatedFirstName);
-            setMessage('Changes saved')
+            setMessage(changesMade)
 
         }
 
@@ -60,13 +63,13 @@ export default function ProfileScreen({navigation}) {
 
             setLastName(updatedLastName);
             await AsyncStorage.setItem('lastName', updatedLastName)
-            setMessage('Changes saved')
+            setMessage(changesMade)
 
         }
 
         if (updatedFirstName == '' && updatedLastName == '') {
 
-            setMessage('No changes were made')
+            setMessage(noChangesMade)
 
         }
 

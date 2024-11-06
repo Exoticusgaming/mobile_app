@@ -21,9 +21,10 @@ export default StyleSheet.create({
     borderColor: 'black',
     backgroundColor: '#D3D3D3',
     borderWidth: 1,
-    margin: 'auto',
+    borderRadius: 5,
     marginBottom: 12,
     paddingLeft: 8,
+    alignSelf: 'center',
   },
   buttonContainer: {
     marginVertical: 10,
@@ -35,6 +36,7 @@ export default StyleSheet.create({
     padding: 5,
     flex: 'center',
     borderWidth: 1,
+    borderRadius: 15,
     textAlign: "center",
     margin: 5,
   },
@@ -55,16 +57,6 @@ export default StyleSheet.create({
       marginBottom: 20,
       textAlign: "center",
       color: "black",
-  },
-  input: {
-      height: 40,
-      width:'55%',
-      borderColor: 'black',
-      backgroundColor: '#D3D3D3',
-      borderWidth: 1,
-      alignSelf: 'center',
-      marginBottom: 12,
-    },
-
+  }
 });
  
